@@ -1,7 +1,7 @@
 <template>
   <div class="wait-page">
     <!--div class="wait-image"><img src="/static/svgs/testimage.svg"></div-->
-    <div class="bars">
+    <div aria-hidden class="bars">
       <div class="yellow"></div>
       <div class="orange"></div>
       <div class="red"></div>
@@ -10,10 +10,10 @@
       <div class="green"></div>
     </div>
     <div class="wait">
-      <div class="lds-heart">
+      <div aria-hidden class="lds-heart">
         <div></div>
       </div>
-      <div class="message">{{ $t("WaitPage.waitMessage") }}</div>
+      <p class="message">{{ $t("WaitPage.waitMessage") }}</p>
     </div>
   </div>
 </template>
@@ -37,8 +37,9 @@ export default {
 }
 
 .message {
-    padding-left: 20px;
+  padding-left: 20px;
 }
+
 .bars {
   flex: 1 0 100%;
   height: 18px;

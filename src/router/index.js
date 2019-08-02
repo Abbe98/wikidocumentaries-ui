@@ -14,7 +14,6 @@ import 'ol/ol.css'
 
 import MainPage from '@/components/MainPage'
 import LandingPage from '@/components/landing_page/LandingPage'
-import devpage from '@/components/landing_page/Developer'
 
 Vue.use(Router)
 Vue.use(VueMasonryPlugin)

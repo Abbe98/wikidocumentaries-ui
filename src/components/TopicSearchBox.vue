@@ -1,9 +1,9 @@
 <template>
     <div class="topic-search-box">
-        <div class="search-items">
-            <input id="findTopicInput" autocomplete="off" @input="debounceFindTopics" class="input-find" v-model="topicInputValue" type="text" :placeholder="$t('LandingPage.searchInputSearchOnly')">
-            <a href="#" class="search-icon"><i class="wikiglyph wikiglyph-magnifying-glass"></i></a>
-        </div>
+        <form class="search-items">
+            <input id="findTopicInput" autocomplete="off" @input="debounceFindTopics" class="input-find" v-model="topicInputValue" type="search" :placeholder="$t('LandingPage.searchInputSearchOnly')">
+            <button title="Search" @click.prevent="focusInput(e)" class="search-icon"><i class="wikiglyph wikiglyph-magnifying-glass" aria-hidden></i></button>
+        </form>
         <div class="search-results">
             <div :class="[shouldShowMenu ? showClass : hideClass]">
                 <router-link v-for="topic in topics" :key="topic.wikidata" :to="getTopicURL(topic)"><span class="topic-title">{{ topic.wikipage }}</span><br><span class="topic-summary">{{ getSummary(topic) }}</span></router-link>
@@ -76,6 +76,9 @@ export default {
         },
         getTopicURL: function(topic) {
             return "/" + topic.wikidata + "?language=" + this.$i18n.locale;
+        },
+        focusInput: function() {
+            document.querySelector('#findTopicInput').focus();
         },
         searchFromWikipedia: function(topicInputValue) {
             //console.log("searchFromWikipedia");
@@ -272,7 +275,7 @@ span.topic-summary {
     font-weight: initial;
 }
 
-a.search-icon {
+button.search-icon {
     height: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -289,9 +292,11 @@ a.search-icon {
     width: 45px;
     color: #333;
     box-shadow: none;
+    border: 0;
+    background: white;
 }
 
-a.search-icon:hover {
+button.search-icon:hover {
     background: var(--main-txt-color);
     color: white;
 }
